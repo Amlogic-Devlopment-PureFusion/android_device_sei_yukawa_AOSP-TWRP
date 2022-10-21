@@ -9,14 +9,14 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
+# Inherit some common twrp stuff.
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit from yukawa device
 $(call inherit-product, device/sei/yukawa/device.mk)
 
 PRODUCT_DEVICE := yukawa
-PRODUCT_NAME := omni_yukawa
+PRODUCT_NAME := twrp_yukawa
 PRODUCT_BRAND := generic
 PRODUCT_MODEL := ATV on yukawa
 PRODUCT_MANUFACTURER := sei

@@ -5,6 +5,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-add_lunch_combo omni_yukawa-user
-add_lunch_combo omni_yukawa-userdebug
-add_lunch_combo omni_yukawa-eng
+add_lunch_combo twrp_yukawa-user
+add_lunch_combo twrp_yukawa-userdebug
+add_lunch_combo twrp_yukawa-eng

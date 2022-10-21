@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_yukawa.mk
+    $(LOCAL_DIR)/twrp_yukawa.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_yukawa-user \
-    omni_yukawa-userdebug \
-    omni_yukawa-eng
+    twrp_yukawa-user \
+    twrp_yukawa-userdebug \
+    twrp_yukawa-eng
