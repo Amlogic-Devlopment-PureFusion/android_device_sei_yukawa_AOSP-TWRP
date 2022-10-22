@@ -1,0 +1,168 @@
+/dev/block/platform/soc/ffe07000.mmc/by-name/userdata   /data           f2fs    noatime,nosuid,nodev                                            latemount,wait,check,quota,fileencryption=software,quota
+/dev/block/platform/soc/ffe07000.mmc/by-name/userdata   /data           ext4    noatime,nosuid,nodev,nodelalloc,nomblk_io_submit,errors=panic   latemount,wait,check,quota,formattable,reservedsize=32M
+/dev/block/platform/soc/ffe07000.mmc/by-name/cache      /cache          ext4    noatime,nosuid,nodev,nodelalloc,nomblk_io_submit,errors=panic   latemount,wait,check,formattable
+/dev/block/platform/soc/ffe07000.mmc/by-name/misc       /misc           emmc    defaults                                                        defaults
+system                                                  /system         ext4    ro,barrier=1                                                    wait,logical,first_stage_mount
+vendor                                                  /vendor         ext4    ro,barrier=1                                                    wait,logical,first_stage_mount
+*/block/mmcblk[0-1]                                     auto            auto    defaults                                                        voldmanaged=sdcard1:auto,encryptable=userdata
+*/block/sd*                                             auto            auto    defaults                                                        voldmanaged=usb:auto,noemulatedsd
+/dev/block/zram0                                        none            swap    defaults                                  
+
+system		/system		ext4	noatime,ro,errors=panic		wait,logical,first_stage_mount
+vendor		/vendor		ext4	noatime,ro,errors=panic		wait,logical,first_stage_mount
+/dev/block/platform/soc/ffe07000.mmc/by-name/userdata       /data               f2fs      noatime,nosuid,nodev    latemount,wait,check,quota,fileencryption=software,quota
+/dev/block/platform/soc/ffe07000.mmc/by-name/userdata       /data               ext4      noatime,nosuid,nodev,nodelalloc,nomblk_io_submit,errors=panic    latemount,wait,check,quota,formattable,reservedsize=32M
+/dev/block/platform/soc/ffe07000.mmc/by-name/cache      /cache              ext4      noatime,nosuid,nodev,nodelalloc,nomblk_io_submit,errors=panic    latemount,wait,check,formattable
+/dev/block/platform/soc/ffe07000.mmc/by-name/misc         /misc           emmc    defaults           defaults
+/dev/block/platform/soc/ffe07000.mmc/by-name/recovery     /recovery       emmc    defaults                defaults
+/dev/block/platform/soc/ffe07000.mmc/by-name/boot         /boot           emmc    defaults                defaults
+
+
+
+
+
+
+by-name  dm-9    loop20  mapper        mmcblk2p8  nbd6      ram3
+dm-0     loop0   loop21  mmcblk0       mmcblk2p9  nbd7      ram4
+dm-1     loop1   loop22  mmcblk0p1     nbd0       nbd8      ram5
+dm-10    loop10  loop23  mmcblk2       nbd1       nbd9      ram6
+dm-11    loop11  loop24  mmcblk2boot0  nbd10      platform  ram7
+dm-12    loop12  loop25  mmcblk2boot1  nbd11      ram0      ram8
+dm-19    loop13  loop26  mmcblk2p1     nbd12      ram1      ram9
+dm-20    loop14  loop3   mmcblk2p10    nbd13      ram10     vold
+dm-21    loop15  loop4   mmcblk2p2     nbd14      ram11     zram0
+dm-23    loop16  loop5   mmcblk2p3     nbd15      ram12
+dm-24    loop17  loop6   mmcblk2p4     nbd2       ram13
+dm-5     loop18  loop7   mmcblk2p5     nbd3       ram14
+dm-6     loop19  loop8   mmcblk2p6     nbd4       ram15
+dm-7     loop2   loop9   mmcblk2p7     nbd5       ram2
+console:/dev/block $ df -h
+Filesystem            Size Used Avail Use% Mounted on
+tmpfs                 1.8G 1.0M  1.8G   1% /dev
+tmpfs                 1.8G    0  1.8G   0% /mnt
+/dev/block/dm-0       1.9G 1.2G  783M  62% /
+/dev/block/dm-1       123M 122M     0 100% /vendor
+tmpfs                 1.8G  12K  1.8G   1% /apex
+tmpfs                 1.8G 504K  1.8G   1% /linkerconfig
+/dev/block/loop2      7.5M 7.5M     0 100% /apex/com.android.runtime@1
+/dev/block/loop0       41M  41M     0 100% /apex/com.android.vndk.v32@1
+/dev/block/loop3      832K 804K   12K  99% /apex/com.android.tzdata@319999900
+/dev/block/loop1       35M  35M     0 100% /apex/com.android.i18n@1
+/dev/block/mmcblk2p10  23G 177M   23G   1% /data
+/dev/block/mmcblk2p7  224M  44K  216M   1% /cache
+tmpfs                 1.8G    0  1.8G   0% /data_mirror
+/dev/fuse              23G 177M   23G   1% /storage/emulated
+/dev/fuse             119G 6.8G  112G   6% /storage/78DB-0A0C
+
+cd by-name
+console:/dev/block/by-name $ ls
+boot   dtbo  misc     mmcblk2boot0  recovery  super     vbmeta
+cache  logo  mmcblk2  mmcblk2boot1  rootfs    userdata
+
+console:/dev/block $ cd platform
+console:/dev/block/platform $ ls
+soc
+console:/dev/block/platform $ cd soc
+console:/dev/block/platform/soc $ ls
+ffe05000.sd  ffe07000.mmc
+console:/dev/block/platform/soc $ cd ffe07000.mmc
+console:/dev/block/platform/soc/ffe07000.mmc $ ls
+by-name       mmcblk2boot1  mmcblk2p2  mmcblk2p5  mmcblk2p8
+mmcblk2       mmcblk2p1     mmcblk2p3  mmcblk2p6  mmcblk2p9
+mmcblk2boot0  mmcblk2p10    mmcblk2p4  mmcblk2p7
+console:/dev/block/platform/soc/ffe07000.mmc $ cd by-name
+console:/dev/block/platform/soc/ffe07000.mmc/by-name $ ls
+boot   dtbo  misc      rootfs  userdata
+cache  logo  recovery  super   vbmeta
+console:/dev/block/platform/soc/ffe07000.mmc/by-name $
+
+
+drwxr-xr-x 3 root root 320 1970-01-01 00:00 .
+drwxr-xr-x 4 root root  80 1970-01-01 00:00 ..
+drwxr-xr-x 2 root root 240 1970-01-01 00:00 by-name
+lrwxrwxrwx 1 root root  18 1970-01-01 00:00 mmcblk2 -> /dev/block/mmcblk2
+lrwxrwxrwx 1 root root  23 1970-01-01 00:00 mmcblk2boot0 -> /dev/block/mmcblk2boot0
+lrwxrwxrwx 1 root root  23 1970-01-01 00:00 mmcblk2boot1 -> /dev/block/mmcblk2boot1
+lrwxrwxrwx 1 root root  20 1970-01-01 00:00 mmcblk2p1 -> /dev/block/mmcblk2p1
+lrwxrwxrwx 1 root root  21 1970-01-01 00:00 mmcblk2p10 -> /dev/block/mmcblk2p10
+lrwxrwxrwx 1 root root  20 1970-01-01 00:00 mmcblk2p2 -> /dev/block/mmcblk2p2
+lrwxrwxrwx 1 root root  20 1970-01-01 00:00 mmcblk2p3 -> /dev/block/mmcblk2p3
+lrwxrwxrwx 1 root root  20 1970-01-01 00:00 mmcblk2p4 -> /dev/block/mmcblk2p4
+lrwxrwxrwx 1 root root  20 1970-01-01 00:00 mmcblk2p5 -> /dev/block/mmcblk2p5
+lrwxrwxrwx 1 root root  20 1970-01-01 00:00 mmcblk2p6 -> /dev/block/mmcblk2p6
+lrwxrwxrwx 1 root root  20 1970-01-01 00:00 mmcblk2p7 -> /dev/block/mmcblk2p7
+lrwxrwxrwx 1 root root  20 1970-01-01 00:00 mmcblk2p8 -> /dev/block/mmcblk2p8
+lrwxrwxrwx 1 root root  20 1970-01-01 00:00 mmcblk2p9 -> /dev/block/mmcblk2p9
+
+
+console:/dev/block $ mount
+[ 5259.759851] type=1400 audit(1666238371.092:222): avc: denied { getattr } for comm="mount" path="/linkerconfig" dev="tmpfs" ino=1316 scontext=u:r:shell:s0 tcontext=u:object_r:linkerconfig_file:s0 tclass=dir permissive=1
+t[ 5259.773643] type=1400 audit(1666238371.092:223): avc: denied { getattr } for comm="mount" path="/data_mirror" dev="tmpfs" ino=1594 scontext=u:r:shell:s0 tcontext=u:object_r:mirror_data_file:s0 tclass=dir permissive=1
+mpfs on /dev type tmpfs (rw,seclabel,nosuid,relatime,mode=755)
+devpts on /dev/pts type devpts (rw,seclabel,relatime,mode=600,ptmxmode=000)
+proc on /proc type proc (rw,relatime,gid=3009,hidepid=2)
+sysfs on /sys type sysfs (rw,seclabel,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,relatime)
+tmpfs on /mnt type tmpfs (rw,seclabel,nosuid,nodev,noexec,relatime,mode=755,gid=1000)
+/dev/block/dm-0 on / type ext4 (ro,seclabel,nodev,noatime,errors=panic)
+/dev/block/dm-1 on /vendor type ext4 (ro,seclabel,noatime,errors=panic)
+tmpfs on /apex type tmpfs (rw,seclabel,nosuid,nodev,noexec,relatime,mode=755)
+tmpfs on /linkerconfig type tmpfs (rw,seclabel,nosuid,nodev,noexec,relatime,mode=755)
+tmpfs on /mnt/installer type tmpfs (rw,seclabel,nosuid,nodev,noexec,relatime,mode=755,gid=1000)
+tmpfs on /mnt/androidwritable type tmpfs (rw,seclabel,nosuid,nodev,noexec,relatime,mode=755,gid=1000)
+none on /dev/blkio type cgroup (rw,nosuid,nodev,noexec,relatime,blkio)
+none on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime)
+none on /dev/cpuctl type cgroup (rw,nosuid,nodev,noexec,relatime,cpu)
+none on /dev/cpuset type cgroup (rw,nosuid,nodev,noexec,relatime,cpuset,noprefix,release_agent=/sbin/cpuset_release_agent)
+none on /dev/memcg type cgroup (rw,nosuid,nodev,noexec,relatime,memory)
+none on /dev/stune type cgroup (rw,nosuid,nodev,noexec,relatime,schedtune)
+tmpfs on /linkerconfig type tmpfs (rw,seclabel,nosuid,nodev,noexec,relatime,mode=755)
+/dev/block/loop2 on /apex/com.android.runtime@1 type ext4 (ro,dirsync,seclabel,nodev,noatime)
+/dev/block/loop0 on /apex/com.android.vndk.v32@1 type ext4 (ro,dirsync,seclabel,nodev,noatime)
+/dev/block/loop0 on /apex/com.android.vndk.v32 type ext4 (ro,dirsync,seclabel,nodev,noatime)
+/dev/block/loop3 on /apex/com.android.tzdata@319999900 type ext4 (ro,dirsync,seclabel,nodev,noatime)
+/dev/block/loop3 on /apex/com.android.tzdata type ext4 (ro,dirsync,seclabel,nodev,noatime)
+/dev/block/loop2 on /apex/com.android.runtime type ext4 (ro,dirsync,seclabel,nodev,noatime)
+/dev/block/loop1 on /apex/com.android.i18n@1 type ext4 (ro,dirsync,seclabel,nodev,noatime)
+/dev/block/loop1 on /apex/com.android.i18n type ext4 (ro,dirsync,seclabel,nodev,noatime)
+tmpfs on /apex/apex-info-list.xml type tmpfs (rw,seclabel,nosuid,nodev,noexec,relatime,mode=755)
+tracefs on /sys/kernel/tracing type tracefs (rw,seclabel,relatime,gid=3012)
+/sys/kernel/debug on /sys/kernel/debug type debugfs (rw,seclabel,relatime,mode=755)
+none on /config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /sys/fs/fuse/connections type fusectl (rw,relatime)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime)
+pstore on /sys/fs/pstore type pstore (rw,seclabel,nosuid,nodev,noexec,relatime)
+tracefs on /sys/kernel/debug/tracing type tracefs (rw,seclabel,relatime,gid=3012)
+/dev/block/mmcblk2p10 on /data type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p7 on /cache type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,errors=panic)
+tmpfs on /storage type tmpfs (rw,seclabel,nosuid,nodev,noexec,relatime,mode=755,gid=1000)
+/dev/block/mmcblk2p10 on /data/user/0 type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+tmpfs on /data_mirror type tmpfs (rw,seclabel,nosuid,nodev,noexec,relatime,mode=700,gid=1000)
+/dev/block/mmcblk2p10 on /data_mirror/data_ce/null type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /data_mirror/data_ce/null/0 type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /data_mirror/data_de/null type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /data_mirror/cur_profiles type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /data_mirror/ref_profiles type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+adb on /dev/usb-ffs/adb type functionfs (rw,relatime)
+mtp on /dev/usb-ffs/mtp type functionfs (rw,relatime)
+ptp on /dev/usb-ffs/ptp type functionfs (rw,relatime)
+/dev/fuse on /mnt/user/0/emulated type fuse (rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other)
+/dev/fuse on /storage/emulated type fuse (rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other)
+/dev/fuse on /mnt/installer/0/emulated type fuse (rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other)
+/dev/fuse on /mnt/androidwritable/0/emulated type fuse (rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other)
+/dev/block/mmcblk2p10 on /mnt/pass_through/0/emulated type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /mnt/user/0/emulated/0/Android/data type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /mnt/androidwritable/0/emulated/0/Android/data type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /mnt/installer/0/emulated/0/Android/data type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /storage/emulated/0/Android/data type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /mnt/user/0/emulated/0/Android/obb type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /mnt/androidwritable/0/emulated/0/Android/obb type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /mnt/installer/0/emulated/0/Android/obb type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/mmcblk2p10 on /storage/emulated/0/Android/obb type ext4 (rw,seclabel,nosuid,nodev,noatime,nodelalloc,resgid=1065,errors=panic)
+/dev/block/vold/public:179,1 on /mnt/media_rw/78DB-0A0C type vfat (rw,dirsync,nosuid,nodev,noexec,noatime,gid=1023,fmask=0007,dmask=0007,allow_utime=0020,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remou)
+/dev/fuse on /mnt/user/0/78DB-0A0C type fuse (rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other)
+/dev/fuse on /storage/78DB-0A0C type fuse (rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other)
+/dev/fuse on /mnt/installer/0/78DB-0A0C type fuse (rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other)
+/dev/fuse on /mnt/androidwritable/0/78DB-0A0C type fuse (rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other)
+/dev/block/vold/public:179,1 on /mnt/pass_through/0/78DB-0A0C type vfat (rw,dirsync,nosuid,nodev,noexec,noatime,gid=1023,fmask=0007,dmask=0007,allow_utime=0020,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors)
+console:/dev/block $ 
