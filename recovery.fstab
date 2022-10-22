@@ -16,6 +16,7 @@ vendor                        /vendor        ext4    noatime,ro,barrier=1       
 /dev/block/platform/soc/ffe07000.mmc/by-name/boot       /boot          emmc    defaults                                             display="Boot",backup=1,flashimg=1,first_stage_mount,nofail
 /dev/block/platform/soc/ffe07000.mmc/by-name/logo       /logo          emmc    defaults                                             display="Logo",backup=1,flashimg=1
 /dev/block/platform/soc/ffe07000.mmc/by-name/recovery   /recovery      emmc    defaults                                             display="Recovery",backup=1,flashimg=1,first_stage_mount,nofail
+/dev/block/platform/soc/ffe07000.mmc/by-name/super      /super         emmc    defaults                                             display="Super",backup=1,flashimg=1,first_stage_mount,nofail
 /dev/block/dm-0                                         /system_image  emmc    defaults                                             display="System image",backup=1,flashimg=1
 /dev/block/dm-1                                         /vendor_image  emmc    defaults                                             display="Vendor image",backup=1,flashimg=1
 /dev/block/platform/soc/ffe07000.mmc/by-name/misc       /misc          emmc    defaults                                             display="Misc",backup=1,flashimg=1,wipeingui
