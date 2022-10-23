@@ -11,29 +11,22 @@ system                        /system        ext4    noatime,ro,barrier=1       
 vendor                        /vendor        ext4    noatime,ro,barrier=1          display="Vendor",backup=1,flashimg=1,wait,logical,first_stage_mount
 
 # device                     mountpoint      fs   options      flags?    (fstab    version    2)
-### ------------------------------------------------------------------------------------------------------------------------------------------ ###
-/dev/block/platform/soc/ffe07000.mmc/mmcblk2boot0       /bootloader    emmc    defaults                                             display="Bootloader",backup=1,flashimg=1
-/dev/block/platform/soc/ffe07000.mmc/by-name/boot       /boot          emmc    defaults                                             display="Boot",backup=1,flashimg=1,first_stage_mount,nofail
-/dev/block/platform/soc/ffe07000.mmc/by-name/logo       /logo          emmc    defaults                                             display="Logo",backup=1,flashimg=1
-/dev/block/platform/soc/ffe07000.mmc/by-name/recovery   /recovery      emmc    defaults                                             display="Recovery",backup=1,flashimg=1,first_stage_mount,nofail
-/dev/block/platform/soc/ffe07000.mmc/by-name/super      /super         emmc    defaults                                             display="Super",backup=1,flashimg=1,first_stage_mount,nofail
-/dev/block/dm-0                                         /system_image  emmc    defaults                                             display="System image",backup=1,flashimg=1
-/dev/block/dm-1                                         /vendor_image  emmc    defaults                                             display="Vendor image",backup=1,flashimg=1
-/dev/block/platform/soc/ffe07000.mmc/by-name/misc       /misc          emmc    defaults                                             display="Misc",backup=1,flashimg=1,wipeingui
-/dev/block/platform/soc/ffe07000.mmc/by-name/cache      /cache         ext4    defaults                                             display="Cache",backup=1,flashimg=1,wipeingui,wait,check,formattable
+### ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ###
+/dev/block/platform/soc/ffe07000.mmc/mmcblk2boot0       /bootloader    emmc    defaults                                                         display="Bootloader",backup=1,flashimg=1
+/dev/block/platform/soc/ffe07000.mmc/by-name/boot       /boot          emmc    defaults                                                         display="Boot",backup=1,flashimg=1,first_stage_mount,nofail
+/dev/block/platform/soc/ffe07000.mmc/by-name/logo       /logo          emmc    defaults                                                         display="Logo",backup=1,flashimg=1
+/dev/block/platform/soc/ffe07000.mmc/by-name/recovery   /recovery      emmc    defaults                                                         display="Recovery",backup=1,flashimg=1,first_stage_mount,nofail
+/dev/block/by-name/super                                /super         emmc    defaults                                                         display="Super",backup=1,flashimg=1,first_stage_mount,nofail
+/dev/block/dm-0                                         /system_image  emmc    defaults                                                         display="System image",backup=1,flashimg=1,wipeingui
+/dev/block/dm-1                                         /vendor_image  emmc    defaults                                                         display="Vendor image",backup=1,flashimg=1,wipeingui
+/dev/block/platform/soc/ffe07000.mmc/by-name/misc       /misc          emmc    defaults                                                         display="Misc",backup=1,flashimg=1,wipeingui
+/dev/block/platform/soc/ffe07000.mmc/by-name/cache      /cache         ext4    defaults                                                         display="Cache",backup=1,flashimg=1,wipeingui,wait,check,formattable
 /dev/block/platform/soc/ffe07000.mmc/by-name/userdata   /data          ext4    noatime,nosuid,nodev,nodelalloc,nomblk_io_submit,errors=panic    display="Userdata-ext4",backup=1,flashimg=1,wipeingui,latemount,wait,check,quota,formattable,reservedsize=32M
-/dev/block/platform/soc/ffe07000.mmc/by-name/userdata   /data          f2fs    noatime,nosuid,nodev                                 display="Userdata-f2fs",backup=1,flashimg=1,wipeingui,latemount,wait,check,quota,fileencryption=software,quota
-/dev/block/mmcblk0p1                                    auto           auto    defaults                                             display="Micro SDcard",storage,wipeingui,removable
-*/block/mmcblk[0-1]                                     auto           auto    defaults                                              voldmanaged=sdcard1:auto,encryptable=userdata
-*/block/sd*                                             auto           auto    defaults                                              voldmanaged=usb:auto,noemulatedsd
-/dev/block/zram0                                        none           swap    defaults                                              1wait,zramsize=268435456
-/dev/block/mmcblk1p1                                    /external_sd   auto    defaults                                             display="Micro SDcard0",storage,wipeingui,removable
-/dev/block/sda*                                         /usb-otg       auto    defaults                                             display="USB-OTG0",storage,wipeingui,removable
+/dev/block/platform/soc/ffe07000.mmc/by-name/userdata   /data          f2fs    noatime,nosuid,nodev                                             display="Userdata-f2fs",backup=1,flashimg=1,wipeingui,latemount,wait,check,quota,fileencryption=software,quota
+/dev/block/mmcblk0p1                                    auto           auto    defaults                                                         display="Micro SDcard",storage,wipeingui,removable
+*/block/mmcblk[0-1]                                     auto           auto    defaults                                                         voldmanaged=sdcard1:auto,encryptable=userdata
+*/block/sd*                                             auto           auto    defaults                                                         voldmanaged=usb:auto,noemulatedsd
+/dev/block/zram0                                        none           swap    defaults                                                         1wait,zramsize=268435456
+/dev/block/mmcblk1p1                                    /external_sd   auto    defaults                                                         display="Micro SDcard0",storage,wipeingui,removable
+/dev/block/sda*                                         /usb-otg       auto    defaults                                                         display="USB-OTG0",storage,wipeingui,removable
 
-#/dev/usb-ffs/fastboot        /fastboot       functionfs    defaults   defaults
-#/dev/usb-ffs/adb             /adb            functionfs    defaults   defaults
-
-#/dev/block/system             /              ext4    ro,seclabel,nodev,relatime,inode_readahead_blks=8
-#/dev/block/vendor             /vendor        ext4    ro,seclabel,relatime,inode_readahead_blks=8
-#/dev/block/product            /product       ext4    ro,seclabel,relatime,inode_readahead_blks=8
-#/dev/block/odm                /odm           ext4    ro,seclabel,relatime,inode_readahead_blks=8
